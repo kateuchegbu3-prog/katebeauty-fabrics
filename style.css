@@ -427,3 +427,10 @@ nav a.sale {
         
 
     }
+
+     .about img {
+         width: 100% !important;
+         height: auto !important;
+         margin-bottom: 15px !important;
+     }
+}
