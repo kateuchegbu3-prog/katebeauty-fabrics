@@ -427,3 +427,35 @@ nav a.sale {
         
 
     }
+/* Mobile fix */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px !important;
+        flex-direction: column !important;
+    }
+    .navbar .logo img {
+        height: 60px !important;
+    }
+    .nav-links {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    .nav-links a {
+        font-size: 18px !important;
+    }
+    .top-bar {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    /* About section */
+    .about, section[class*="about"] {
+        padding: 20px 15px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+     .about img {
+         width: 100% !important;
+         height: auto !important;
+         margin-bottom: 15px !important;
+     }
+}
