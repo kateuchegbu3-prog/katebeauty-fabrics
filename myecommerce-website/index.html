@@ -4,242 +4,177 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>myecommerce-website</title>
-    
+    <title>KateBeauty Fabrics & Tailoring Accessories</title>
   </head>
   <body>
     <header class="navbar">
-    <div class="logo">
-      <img src="/my_logo_removebg.png" alt="KateBeauty Logo" style="width: 80px; height: 80px;border-radius: 14px;" />
-      <div>
-        <strong>KateBeauty</strong>
-        <small>Fabrics & Tailoring Accessories</small>
+      <div class="logo">
+        <img src="/my_logo_removebg.png" alt="KateBeauty Logo" />
+        <div>
+          <strong>KateBeauty</strong>
+          <small>Fabrics & Tailoring Accessories</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="cart" type="button" onclick="openCart()">
+        🛍️ Cart <span id="cart-count">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-text">
+          <p class="eyebrow">BEAUTIFUL FABRICS • BEAUTIFUL CREATIONS</p>
+
+          <h1>
+            Fabric your
+            <span>imagination.</span>
+          </h1>
+
+          <p class="hero-description">
+            Discover beautiful fabrics and quality tailoring accessories
+            carefully selected to bring your creative ideas to life.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#shop" class="primary-btn">Shop Collection →</a>
+            <a href="#about" class="secondary-btn">Explore More</a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <img src="/my-design.jpeg" alt="KateBeauty design" />
+          <div class="circle-text">KATE<br>BEAUTY</div>
+        </div>
+      </section>
+
+      <section class="categories">
+        <p class="eyebrow">SHOP BY CATEGORY</p>
+        <h2>Find something beautiful</h2>
+
+        <div class="category-grid">
+          <button type="button" onclick="filterProducts('Fabrics')">🌺 Fabrics</button>
+          <button type="button" onclick="filterProducts('Accessories')">🧵 Accessories</button>
+          <button type="button" onclick="filterProducts('all')">✨ View All</button>
+        </div>
+      </section>
+
+      <section class="shop" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">OUR COLLECTION</p>
+            <h2>Made for your next creation</h2>
+          </div>
+
+          <span id="product-count">16 products</span>
+        </div>
+
+        <div class="product-grid" id="product-grid"></div>
+      </section>
+
+      <section class="about" id="about">
+        <div>
+          <p class="eyebrow">ABOUT KATEBEAUTY</p>
+          <h2>Where beautiful fabrics meet creativity.</h2>
+        </div>
+
+        <p>
+          KateBeauty Fabrics & Tailoring Accessories provides beautiful fabrics
+          and essential tailoring materials for designers, tailors and anyone
+          who loves creating something unique.
+        </p>
+      </section>
+
+      <section class="contact" id="contact">
+        <p class="eyebrow">LET'S CREATE</p>
+        <h2>Ready to create something beautiful?</h2>
+        <p>Shop our collection or get in touch with KateBeauty today.</p>
+        <a href="https://wa.me/" class="primary-btn">Chat on WhatsApp</a>
+      </section>
+    </main>
+
+    <div id="cart-modal" class="cart-modal" onclick="closeCart()">
+      <div class="cart-modal-content" onclick="event.stopPropagation()">
+        <span class="cart-close" onclick="closeCart()">&times;</span>
+        <h3>Your Cart</h3>
+        <div class="cart-slideshow">
+          <button class="cart-prev" type="button">&#10094;</button>
+          <div class="cart-slides-container">
+            <div class="cart-slides"></div>
+          </div>
+          <button class="cart-next" type="button">&#10095;</button>
+        </div>
+        <div class="cart-indicators"></div>
+        <p class="cart-empty">Your cart is empty.</p>
       </div>
     </div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/my_logo_removebg.png" alt="KateBeauty Logo" />
+          <h3>KateBeauty</h3>
+          <p>Fabrics & Tailoring Accessories</p>
+          <p class="footer-description">
+            Beautiful fabrics and essential tailoring materials for designers, tailors and anyone
+            who loves creating something unique.
+          </p>
+        </div>
 
-    <button class="cart">
-      🛍️ Cart <span id="cart-count">0</span>
-    </button>
-  </header>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop All</a></li>
+            <li><a href="#about">New Arrivals</a></li>
+            <li><a href="#contact">Best Sellers</a></li>
+            <li><a href="#shop">Sale Items</a></li>
+          </ul>
+        </div>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-text">
-        <p class="eyebrow">BEAUTIFUL FABRICS • BEAUTIFUL CREATIONS</p>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" onclick="filterProducts('Fabrics')">Fabrics</a></li>
+            <li><a href="#" onclick="filterProducts('Accessories')">Accessories</a></li>
+            <li><a href="#" onclick="filterProducts('all')">View All</a></li>
+            <li><a href="#about">Custom Orders</a></li>
+            <li><a href="#contact">Gift Cards</a></li>
+          </ul>
+        </div>
 
-        <h1>
-          Fabric your
-          <span>imagination.</span>
-        </h1>
+        <div class="footer-col">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
 
-        <p class="hero-description">
-          Discover beautiful fabrics and quality tailoring accessories
-          carefully selected to bring your creative ideas to life.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#shop" class="primary-btn">Shop Collection →</a>
-          <a href="#about" class="secondary-btn">Explore More</a>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="contact-list">
+            <li>Port Harcourt, Rivers State, Nigeria</li>
+            <li>+234 703 780 6723</li>
+            <li>support@katebeauty.ng</li>
+            <li>Mon – Fri: 9:00 AM – 6:00 PM</li>
+          </ul>
         </div>
       </div>
 
-      <div class="hero-art">
-        <img src="/my-design.jpeg" alt="KateBeauty" style="width: 100%; max-width: 400px;height: auto;object-fit: cover;" />
-        </div>
-        <div class="circle-text">KATE<br>BEAUTY</div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 KateBeauty. All rights reserved.</p>
       </div>
-    </section>
-
-    <section class="categories">
-      <p class="eyebrow">SHOP BY CATEGORY</p>
-      <h2>Find something beautiful</h2>
-
-      <div class="category-grid">
-        <button onclick="filterProducts('Fabrics')">🌺 Fabrics</button>
-        <button onclick="filterProducts('Accessories')">🧵 Accessories</button>
-        <button onclick="filterProducts('all')">✨ View All</button>
-      </div>
-    </section>
-
-    <section class="shop" id="shop">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">OUR COLLECTION</p>
-          <h2>Made for your next creation</h2>
-        </div>
-
-        <span id="product-count">11 products</span>
-      </div>
-
-      <div class="product-grid" id="product-grid"></div>
-    </section>
-
-    <section class="about" id="about">
-      <div>
-        <p class="eyebrow">ABOUT KATEBEAUTY</p>
-        <h2>Where beautiful fabrics meet creativity.</h2>
-      </div>
-
-      <p>
-        KateBeauty Fabrics & Tailoring Accessories provides beautiful fabrics
-        and essential tailoring materials for designers, tailors and anyone
-        who loves creating something unique.
-      </p>
-    </section>
-       
-
-    <section class="contact" id="contact">
-      <p class="eyebrow">LET'S CREATE</p>
-      <h2>Ready to create something beautiful?</h2>
-      <p>Shop our collection or get in touch with KateBeauty today.</p>
-      <a href="https://wa.me/" class="primary-btn">Chat on WhatsApp `n</a>
-    </section>
-  </main>
-
-
-  <div id="app" id="">
-    <h1 style="text-align: center;">KateBeauty Fabrics</h1>
-    <h2>Fabrics</h2>
-    <div style="display: grid;grid-template-columns: repeat(3,1fr);gap:20px;max-width: 900px;margin:0 auto ;">
-
-        
-
-<div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_ankara.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Ankara</h3>
-        <p>&#8358; 6000</p>
-        <button>Add to Cart</button>
-        </div>
-
-
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_ankara2.jpeg" alt="Ankara2" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Ankara2</h3>
-        <p>&#8358; 6000</p>
-        <button>Add to Cart</button>
-        </div>
-   
-     <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_lace.jpeg" alt="lace" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>lace</h3>
-        <p>&#8358; 10000</p>
-        <button>Add to Cart</button>
-        </div>
-
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_aso-oke.jpeg" alt="aso-oke" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>aso-oke</h3>
-        <p>&#8358; 14000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_damask.jpeg" alt="damask" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>damask</h3>
-        <p>&#8358; 30000</p>
-        <button>Add to Cart</button>
-        </div>
-
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_high_target.jpeg" alt="high-target" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>high-target</h3>
-        <p>&#8358; 16000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_jonkoso.jpeg" alt="jonkoso" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>jonkoso</h3>
-        <p>&#8358; 3000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_scuba.jpeg" alt="scuba" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>scuba</h3>
-        <p>&#8358; 3000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_crepe.jpeg" alt="crepe" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>crepe</h3>
-        <p>&#8358; 3000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="fabric-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_vintage.jpeg" alt="vintage" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>vintage</h3>
-        <p>&#8358; 2000</p>
-        <button>Add to Cart</button>
-        </div>
- </div>
-
-
- <div id="app" id="">
-    <h1 style="text-align: center;">KateBeauty Accessories</h1>
-    <h2>Accessories</h2>
-    <div style="display: grid;grid-template-columns: repeat(3,1fr);gap:20px;max-width: 900px;margin:0 auto ;">
-
-    <div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_button.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Button</h3>
-        <p>&#8358; 2000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_zip.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Zipper</h3>
-        <p>&#8358; 1000</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/myribbon.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Ribbon</h3>
-        <p>&#8358; 1500</p>
-        <button>Add to Cart</button>
-        </div>
-
-<div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/mytrimming.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Trimming</h3>
-        <p>&#8358; 2500</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_thread.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Thread</h3>
-        <p>&#8358; 1500</p>
-        <button>Add to Cart</button>
-        </div>
-
-        <div class="accessories-image" style="border: 1px solid black; padding: 10px;background: #fff;">
-        <img src="/my_cup-chain.jpeg" alt="Ankara" style="width: 100%;height: 200px;object-fit: cover;">
-        <h3>Cup-chain</h3>
-        <p>&#8358; 6500</p>
-        <button>Add to Cart</button>
-        </div>
-
-        </div>      
-  <footer>
-    <strong>KateBeauty</strong>
-    <div id="(`#App`)"></div>
-    <span>Fabrics & Tailoring Accessories</span>
-    <p>c 2026 KateBeauty.All rights reserved</p>
     </footer>
     <script type="module" src="/src/main.js"></script>
   </body>
