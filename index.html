@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katebeauty Fabrics and Tailoring Accessories.</title> 
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+        <div class="logo">
+         <img src="./multimedia/My_logo-removebg-preview.png" alt="logo" height="150px" width="300">
+     </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Products</a>
+            <a href="#">Cart</a>
+
+        </div>
+    </nav>
+        
+            
+        
+        <div class="top-bar">
+            <h1>KATEBEAUTY FABRICS $ TAILORING ACCESSORIES</h1>
+             <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for fabrics, lace thread.....">
+                 <button onclick="searchProduct()"></button>
+                 </div>
+                 <div class="icons">
+                    <span> <sup id="wishlist">0</sup></span>
+                    <span></span>
+                    <span onclick="openCart()"><sup id="cart-count">0</sup></span>
+
+                    </div>
+                 
+        </div>
+
+    </header>
+    <section class="hero">
+        <div class="hero-text">
+            <span class="badge">NEW COLLECTION</span>
+            <h2>Elevate Your Craft<br>With Premium <span>Fabrics</span></h2>
+            <p>Discover quality Ankara, lace $ Aso-Oke curated for Nigerian designers $ tailors</p>
+            <div class="btns">
+                <button class="btn-yellow">SHOP FABRICS</button>
+                <button class="btn-outline">EXPLORE COLLECTION</button>
+
+            </div>
+            <div class="trust">
+            <p>FREE DELIVERY Above #20,000</p>
+            <p>PREMIUM QUALITY</p>
+             <p>EASY RETURNS</p>
+             </div>
+        </div>
+            <div class="hero-img">
+                <img src="./multimedia/My_ankara_design-removebg-preview.png" alt="">
+                
+                
+
+
+            
+
+            </div>
+
+    </section>
+    
+          <div class="promo-section">
+            <div class="promo-box">
+            <div class="icon"></div>
+                <h4>UP TO 40% OFF</h4>
+                <p>On Selected Fabrics</p>
+
+            </div>
+            <div class="promo-box">
+                <div class="icon"></div>
+                <h4>BUY 2 TO GET 1 FREE</h4>
+                <p>On All Lace $ Trims</p>
+
+            </div>
+            <div class="promo-box">
+                <div class="icon"></div>
+                <h4>FREE DELIVERY</h4>
+                <p>Above #20,000 - Only for Nigeria</p>
+
+            </div>
+            <div class="promo-box">
+                <div class="icon"></div>
+                <h4>EXTRA 10% OFF</h4>
+                <p>On Bulk Orders</p>
+              </div>
+              </div>
+
+    </section>
+    <div class="shop-by-category">
+        <h3>SHOP BY CATEGORY</h3>
+        <div class="category-grid">
+            <div class="category-item">
+             <img src="./multimedia/My_ankara.jpeg" alt="Ankara"><p>Ankara</p>
+                </div>
+            <div class="category-item">
+                <img src="./multimedia/My_ankara2.jpeg" alt="Ankara">
+                <p>Ankara2</p>
+             </div>
+            <div class="category-item">
+                <img src="./multimedia/My_Aso-Oke.jpeg" alt="Aso-Oke">
+                <p>Aso-Oke</p>
+
+            </div>
+            <div class="category-item">
+                <img src="./multimedia/My_high-target.jpeg" alt="High-target">
+                <p>High-target</p>
+                </div>
+            <div class="category-item">
+                <img src="./multimedia/My_skuba-net.jpeg" alt="scuba-net">
+                <p>Scuba-net</p>
+            </div>
+            <div class="category-item">
+                <img src="./multimedia/My_damask.jpeg" alt="Damask">
+                <p>Damask</p>
+                </div>
+            <div class="category-item">
+                <img src="./multimedia/My_lace.jpeg" alt="Lace">
+                <p>Lace</p>
+            </div>
+            <div class="category-item">
+                <img src="./multimedia/My_jonkoso.jpeg" alt="jonkoso">
+                <p>jonkoso</p>
+                </div>
+
+        </div>
+
+    </div>
+
+    </section>
+    <section>
+        <div class="shop-for-accessories">
+        <h3>SHOP FOR ACCESSORIES</h3>
+        <div class="accessories-grid">
+            <div class="accessories-item">
+             <img src="./multimedia/My_thread.jpeg" alt="Ankara"><p>Thread</p>
+                </div>
+            <div class="accessories-item">
+                <img src="./multimedia/Myzip.jpeg" alt="Zipper">
+                <p>Zipper</p>
+             </div>
+            <div class="accessories-item">
+                <img src="./multimedia/myribbon.jpeg" alt="Ribbon">
+                <p>Ribbon</p>
+
+            </div>
+            <div class="accessories-item">
+                <img src="./multimedia/mytrimming.jpeg" alt="Trimming">
+                <p>Trimming</p>
+                </div>
+            <div class="accessories-item">
+                <img src="./multimedia/My_button.jpeg" alt="button">
+                <p>Button</p> 
+
+            </div>
+            <div class="accessories-item">
+                <img src="./multimedia/My_cupchainjpeg.jpeg" alt="Cup-chain">
+
+            </div>
+    </section>
+    <!-- CART -->
+     <div class="cartOverlay" class="cart-overlay" onclick="closeCart( )"></div>
+     <div id="cartDrawer" class="cart-drawer">
+        <h3>Your Cart <span onclick="openCart()" style="float:right;cursor: pointer;">x</span></h3>
+        <div class="cartTotal"></div>
+        <h4 id="cartTotal">Total: #0</h4>
+        <button class="btn-yellow full" onclick="checkout()">Checkout on WhatsApp</button>
+
+     </div>
+     <footer>
+        <div>
+            <h2>KATEBEAUTY</h2>
+            <p>Your trusted Nigerian fabrics $ tailoring accessories store.</p>
+
+        </div>
+        <div>
+            <p><b>CONTACT US</b><br>+234 7037806723<br>support@kateeauty.ng<br>Port Harcourt, Rivers</p>
+        </div>
+     </footer>
+    <script src="script.js"></script>
+</body>
+</html>
