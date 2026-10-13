@@ -23,6 +23,22 @@
         <a href="#contact">Contact</a>
       </nav>
 
+      <button class="hamburger" type="button" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="auth-buttons">
+        <button class="btn-auth" type="button" onclick="openAuthModal('login')">Sign In</button>
+        <button class="btn-auth primary" type="button" onclick="openAuthModal('signup')">Sign Up</button>
+      </div>
+
+      <div id="user-menu" class="user-menu" style="display: none;">
+        <span id="user-email"></span>
+        <button class="btn-auth" type="button" onclick="signOut()">Sign Out</button>
+      </div>
+
       <button class="cart" type="button" onclick="openCart()">
         🛍️ Cart <span id="cart-count">0</span>
       </button>
@@ -113,6 +129,48 @@
         </div>
         <div class="cart-indicators"></div>
         <p class="cart-empty">Your cart is empty.</p>
+      </div>
+    </div>
+
+    <div id="auth-modal" class="auth-modal" onclick="closeAuthModal()">
+      <div class="auth-modal-content" onclick="event.stopPropagation()">
+        <span class="auth-close" onclick="closeAuthModal()">&times;</span>
+        
+        <div id="login-form" class="auth-form">
+          <h3>Sign In</h3>
+          <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" required autocomplete="current-password" />
+            </div>
+            <button type="submit" class="primary-btn">Sign In</button>
+          </form>
+          <p class="auth-switch">Don't have an account? <button type="button" onclick="switchAuthMode('signup')">Sign Up</button></p>
+        </div>
+
+        <div id="signup-form" class="auth-form" style="display: none;">
+          <h3>Create Account</h3>
+          <form onsubmit="handleSignup(event)">
+            <div class="form-group">
+              <label for="signup-email">Email</label>
+              <input type="email" id="signup-email" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <input type="password" id="signup-password" required minlength="6" autocomplete="new-password" />
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm">Confirm Password</label>
+              <input type="password" id="signup-confirm" required autocomplete="new-password" />
+            </div>
+            <button type="submit" class="primary-btn">Create Account</button>
+          </form>
+          <p class="auth-switch">Already have an account? <button type="button" onclick="switchAuthMode('login')">Sign In</button></p>
+        </div>
       </div>
     </div>
 

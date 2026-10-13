@@ -1,4 +1,5 @@
 import './style.css';
+import { supabase } from './lib/supabase.js';
 
 const products = [
   { name: 'Ankara', category: 'Fabrics', price: 6000, image: '/my_ankara.jpeg' },
@@ -21,6 +22,7 @@ const products = [
 
 let cartItems = [];
 let currentSlide = 0;
+let currentAuthMode = 'login';
 
 function formatPrice(n) {
   return n.toLocaleString();
@@ -166,6 +168,168 @@ function closeCart() {
   document.body.style.overflow = '';
 }
 
+function toggleNav() {
+  const nav = document.querySelector('nav');
+  if (nav) {
+    nav.classList.toggle('open');
+  }
+}
+
+function openAuthModal(mode) {
+  currentAuthMode = mode;
+  const modal = document.getElementById('auth-modal');
+  if (!modal) return;
+  switchAuthMode(mode);
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAuthModal() {
+  const modal = document.getElementById('auth-modal');
+  if (!modal) return;
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+  clearAuthForms();
+}
+
+function switchAuthMode(mode) {
+  currentAuthMode = mode;
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  if (mode === 'login') {
+    loginForm.style.display = 'block';
+    signupForm.style.display = 'none';
+  } else {
+    loginForm.style.display = 'none';
+    signupForm.style.display = 'block';
+  }
+  clearAuthErrors();
+}
+
+function clearAuthForms() {
+  const loginEmail = document.getElementById('login-email');
+  const loginPassword = document.getElementById('login-password');
+  const signupEmail = document.getElementById('signup-email');
+  const signupPassword = document.getElementById('signup-password');
+  const signupConfirm = document.getElementById('signup-confirm');
+  
+  if (loginEmail) loginEmail.value = '';
+  if (loginPassword) loginPassword.value = '';
+  if (signupEmail) signupEmail.value = '';
+  if (signupPassword) signupPassword.value = '';
+  if (signupConfirm) signupConfirm.value = '';
+  
+  clearAuthErrors();
+}
+
+function clearAuthErrors() {
+  document.querySelectorAll('.auth-error').forEach(el => el.remove());
+  document.querySelectorAll('input').forEach(el => el.classList.remove('error'));
+}
+
+function showAuthError(inputId, message) {
+  const input = document.getElementById(inputId);
+  if (input) {
+    input.classList.add('error');
+    const error = document.createElement('p');
+    error.className = 'auth-error';
+    error.style.color = '#e84f8a';
+    error.style.fontSize = '12px';
+    error.style.marginTop = '4px';
+    error.textContent = message;
+    input.parentNode.appendChild(error);
+  }
+}
+
+async function handleLogin(event) {
+  event.preventDefault();
+  clearAuthErrors();
+
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+
+  if (!email || !password) {
+    showAuthError('login-email', 'Please fill in all fields');
+    return;
+  }
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    showAuthError('login-password', error.message);
+    return;
+  }
+
+  closeAuthModal();
+  updateAuthUI();
+}
+
+async function handleSignup(event) {
+  event.preventDefault();
+  clearAuthErrors();
+
+  const email = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+  const confirm = document.getElementById('signup-confirm').value;
+
+  if (!email || !password || !confirm) {
+    showAuthError('signup-email', 'Please fill in all fields');
+    return;
+  }
+
+  if (password !== confirm) {
+    showAuthError('signup-confirm', 'Passwords do not match');
+    return;
+  }
+
+  if (password.length < 6) {
+    showAuthError('signup-password', 'Password must be at least 6 characters');
+    return;
+  }
+
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+
+  if (error) {
+    showAuthError('signup-email', error.message);
+    return;
+  }
+
+  alert('Account created! Please check your email to confirm.');
+  switchAuthMode('login');
+}
+
+async function signOut() {
+  await supabase.auth.signOut();
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  const authButtons = document.querySelector('.auth-buttons');
+  const userMenu = document.getElementById('user-menu');
+  const userEmail = document.getElementById('user-email');
+
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session?.user) {
+      authButtons.style.display = 'none';
+      userMenu.style.display = 'flex';
+      userEmail.textContent = session.user.email;
+    } else {
+      authButtons.style.display = 'flex';
+      userMenu.style.display = 'none';
+    }
+  });
+}
+
+supabase.auth.onAuthStateChange((_event, session) => {
+  updateAuthUI();
+});
+
 window.filterProducts = filterProducts;
 window.addToCart = addToCart;
 window.nextSlide = nextSlide;
@@ -173,13 +337,22 @@ window.prevSlide = prevSlide;
 window.goToSlide = goToSlide;
 window.openCart = openCart;
 window.closeCart = closeCart;
+window.toggleNav = toggleNav;
+window.openAuthModal = openAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.switchAuthMode = switchAuthMode;
+window.handleLogin = handleLogin;
+window.handleSignup = handleSignup;
+window.signOut = signOut;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartCount();
+    updateAuthUI();
   });
 } else {
   renderProducts();
   updateCartCount();
+  updateAuthUI();
 }
